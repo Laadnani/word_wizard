@@ -10,9 +10,10 @@ import 'package:google_fonts/google_fonts.dart';
 class Tile extends StatelessWidget {
 
 final String textEntered;
+final int index;
 
 
-   const Tile({super.key, required this.textEntered, });
+   const Tile({super.key, required this.textEntered, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +37,11 @@ final String textEntered;
             textEntered,
             textAlign: TextAlign.center,
             style: const TextStyle(
-                fontSize: 25,
+                fontSize: 30,
                 fontFamily: 'Robotomono',
                 color: Colors.black,
                 textBaseline: TextBaseline.alphabetic),
           ),
-         
         ],
       ),
     );

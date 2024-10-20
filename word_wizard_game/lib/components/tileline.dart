@@ -50,7 +50,7 @@ class Tiles extends StatelessWidget {
                 textEntered: i < textEntered.length && textEntered.isNotEmpty
                     ? textEntered[i]
                     : '', // Handle empty tiles
-                   
+                   index: i,
               ),
             ),
           ),

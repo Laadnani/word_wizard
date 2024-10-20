@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:word_wizard_game/constants.dart';
+import 'package:word_wizard_game/gamepage.dart';
 import 'package:word_wizard_game/gameprovider.dart';
 import 'package:word_wizard_game/homePage.dart';
 import 'package:word_wizard_game/settingScreen.dart';
@@ -19,17 +20,19 @@ class MyApp extends StatelessWidget {
    @override
      Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Word Wizard',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: Colors.transparent, 
         useMaterial3: true,
       ),
       //home: const HomeScreen(),
       home: const HomePage(),
       routes: {
-        Cts.homeScreen: (context) =>  HomePage(),
+        Cts.homeScreen: (context) => const HomePage(),
         Cts.settingScreen: (context) => const  SettingScreen(),
+        Cts.gameScreen: (context) => const GamePage(),
        
 
       },

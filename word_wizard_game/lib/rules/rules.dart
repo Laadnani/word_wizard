@@ -1,12 +1,7 @@
 class Rules {
 // create a rule for the entred strings
 
-  static checkWord() {
-    print('we have reached the verification here ');
-    // verification
 
-    // return index of OK words
-  }
 
 // create a rule for verifying the entred word vs. the word chosen by the computer
  static List<int> checkStringEquality(String string1, String string2) {
@@ -32,4 +27,7 @@ class Rules {
 
     return matchingIndices;
   }
+
+
+
 }

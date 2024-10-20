@@ -82,4 +82,43 @@ class GameProvider extends ChangeNotifier {
     _pagetileIndex = value + 1;
     notifyListeners();
   }
+
+// number of tries per game
+  static int _tries = 5;
+
+  int get triesLeft => _tries;
+
+  set triesLeft(int value) {
+    _tries = value;
+    notifyListeners();
+  }
+
+  void resetTriesLeft(int value) {
+    _tries = value;
+    notifyListeners();
+  }
+
+  void updateTriesLeft(int value) {
+    _tries = value - 1;
+    notifyListeners();
+  }
+
+// number of tries used
+
+  static int _triesUsed = 0;
+
+  int get triesUsed => _triesUsed;
+
+  void resetUsedTries(int value) {
+    _triesUsed = value;
+    notifyListeners();
+  }
+
+  void updateTriesUsed(int value) {
+    _triesUsed = value + 1;
+    notifyListeners();
+  }
+
+   
+
 }

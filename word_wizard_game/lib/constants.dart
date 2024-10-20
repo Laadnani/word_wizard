@@ -2,7 +2,7 @@ class Cts {
   static String homeScreen = '/homeScreen';
 
   static String settingScreen = '/settingScreen';
-  static String gameScreen = '/chat';
+  static String gameScreen = '/gameScreen';
 
   // game settings
 
