@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:word_wizard_game/constants.dart';
+import 'package:word_wizard_game/gameprovider.dart';
 import 'package:word_wizard_game/homePage.dart';
 import 'package:word_wizard_game/settingScreen.dart';
 
 void main() {
   
-  runApp(const MyApp());
+  runApp( ChangeNotifierProvider(
+      create: (context) => GameProvider(),
+      child: const MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,10 +26,11 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: const HomeScreen(),
-      home: const HomeScreen(),
+      home: const HomePage(),
       routes: {
-        Cts.homeScreen: (context) => const HomeScreen(),
-        Cts.settingScreen: (context) => const SettingScreen(),
+        Cts.homeScreen: (context) =>  HomePage(),
+        Cts.settingScreen: (context) => const  SettingScreen(),
+       
 
       },
     );
