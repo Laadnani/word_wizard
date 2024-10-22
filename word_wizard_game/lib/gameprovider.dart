@@ -119,6 +119,58 @@ class GameProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-   
+  // icons tries function
+
+  List<IconData> iconTries({required int tries, required int triesUsed}) {
+
+    assert(tries >= 0);
+    assert(triesUsed >= 0);
+    // Improved function with clear variable names and concise logic
+    final usedIcons = List.generate(triesUsed, (_) => Icons.abc);
+    final remainingIcons = List.generate(tries - triesUsed, (_) => Icons.abc_rounded);
+    final iconsRendered = [...usedIcons, ...remainingIcons];
+    return iconsRendered;
+
+  }
+
+static String _TextToOUput = '';
+
+String get TextToOUput => _TextToOUput;
+
+void updateTextToOUput(String value) {
+  _TextToOUput = value;
+  notifyListeners();
+ }
+
+ static List<int> _hints = [];
+
+ List<int> get hints => _hints;
+
+ void updateHints(List<int> value) {
+  _hints = value ;
+  notifyListeners();
+  }
+
+  static String checkingSimilarLetters (List<String> A, List<String> B)  {
+
+    String letter = '';
+    int index = 0;
+
+    for (int i =0; i< A.length; i++) {
+      for (int j =0; j< B.length; j++) {
+        if (A[i] == B[j]) {
+          letter += (B[j]);
+          index = i;
+         
+        } 
+      }
+      
+    }
+
+    String result = '$letter is at index $index';
+     print('letter: $letter, index: $index');
+    return result;
+
+  }
 
 }

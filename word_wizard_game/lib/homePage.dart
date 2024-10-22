@@ -19,11 +19,12 @@ class _HomePageState extends State<HomePage> {
           
           child: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const SizedBox(height: 120),
+              
               
                 Image.asset('assets/images/logo_w.png'),
-                const SizedBox(height: 120),
+                
                 ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                 fixedSize:

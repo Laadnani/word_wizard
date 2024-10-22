@@ -16,31 +16,32 @@ class GamePage extends StatefulWidget {
 class _GamePageState extends State<GamePage> {
   GameProvider gm = GameProvider();
   final TextEditingController _controller = TextEditingController();
-  final FocusNode _focusNode =
-      FocusNode(); // Focus node to control the keyboard
+  final FocusNode _focusNode = FocusNode(); // Focus node to control the keyboard
+ 
 
   bool isCorrectGuess(List<int> A) {
     const listEquality = ListEquality<int>();
     return listEquality.equals(A, [1, 2, 3, 4, 5]);
   }
 
-  void handleTries(int tries, bool correctGuess, int triesCount) {
+  dynamic handleTries(int tries, bool correctGuess, int triesCount) {
     if (!correctGuess) {
       if (tries == 0) {
-        print('You Lose');
+        gm.updateTextToOUput('You Lose');
         gm.updateWordToBeGuessed();
         gm.resetUsedTries(0);
         gm.resetTriesLeft(5);
       } else {
-        print('Try again');
+        gm.updateTextToOUput('Try again');
         gm.updateTriesLeft(gm.triesLeft);
         gm.updateTriesUsed(gm.triesUsed);
       }
     } else {
-      print('You Win after ${triesCount + 1} tries');
+      gm.updateTextToOUput('You Win after ${triesCount + 1} tries');
       gm.updateWordToBeGuessed();
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,23 +60,16 @@ class _GamePageState extends State<GamePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+                 
               const SizedBox(height: 30),
-              Consumer<GameProvider>(
-                builder: (context, gameProvider, child) {
-                  return Text(
-                    'Word to be guessed: ${gm.wordToBeGuessed}',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(height: 30),
+              Text(gm.TextToOUput,
+                  style: const TextStyle(fontSize: 24, color: Colors.orange)),
+              Text(gm.hints.toString(), style: const TextStyle(fontSize: 20, color: Colors.orange)) ,
               Stack(
                 alignment: Alignment.center,
                 children: [
+                  
+                  
                   // Tiles with GestureDetector for tap interaction
                   Consumer<GameProvider>(
                     builder: (context, gameProvider, child) {
@@ -128,14 +122,17 @@ class _GamePageState extends State<GamePage> {
                       'Word to be guessed: ${gm.splitword(gm.wordToBeGuessed, 5)}');
                   print('Word guessed: ${gm.splitword(gm.inputText, 5)}');
                   print(
-                    'Word equality: ${Rules.checkStringEquality(gm.wordToBeGuessed, gm.inputText)}',
-                  );
+                    'Word equality: ${Rules.checkStringEquality(gm.wordToBeGuessed, gm.inputText)}');
+                    gm.updateHints(Rules.checkStringEquality(gm.wordToBeGuessed.toString(), gm.inputText.toString()));
                   handleTries(
                     gm.triesLeft,
                     isCorrectGuess(Rules.checkStringEquality(
                         gm.wordToBeGuessed, gm.inputText)),
                     gm.triesUsed,
+                    
                   );
+
+                  print('${GameProvider.checkingSimilarLetters(gm.splitword(gm.wordToBeGuessed, 5), gm.splitword(gm.inputText, 5))}');
                   setState(() {
                     context.read<GameProvider>().clearInput();
                     _controller.clear();

@@ -23,4 +23,12 @@ class Cts {
   static String _entredWord = '';
   set entredWord(String value) => _entredWord;
   String get entredWord => _entredWord;
+
+  static String _iconTryused = 'X'; 
+  set iconused(String value) => _iconTryused;
+  String get iconused => _iconTryused;
+
+  static String _iconnTryLeft = '0';
+  set iconnTryLeft(String value) => _iconnTryLeft;
+  String get iconnTryLeft => _iconnTryLeft;
 }
