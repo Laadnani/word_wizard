@@ -11,9 +11,11 @@ class Tile extends StatelessWidget {
 
 final String textEntered;
 final int index;
+late Color? color = Colors.grey[300]; 
 
 
-   const Tile({super.key, required this.textEntered, required this.index});
+
+    Tile({super.key, required this.textEntered, required this.index, color});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ final int index;
       width: 50,
       height: 50,
       decoration: BoxDecoration(
-          color: Colors.grey[300],
+          color: color ?? Colors.grey[300],
           borderRadius: BorderRadius.circular(8),
           boxShadow: [
             BoxShadow(

@@ -3,6 +3,8 @@ class Cts {
 
   static String settingScreen = '/settingScreen';
   static String gameScreen = '/gameScreen';
+  static String second = '/second';
+  static String third = '/third';
 
   // game settings
 

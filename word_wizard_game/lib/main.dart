@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:word_wizard_game/constants.dart';
-import 'package:word_wizard_game/gamepage.dart';
 import 'package:word_wizard_game/gameprovider.dart';
 import 'package:word_wizard_game/homePage.dart';
+import 'package:word_wizard_game/secondgame.dart';
 import 'package:word_wizard_game/settingScreen.dart';
+import 'package:word_wizard_game/splash.dart';
+import 'package:word_wizard_game/third.dart';
 
 void main() {
   
@@ -28,12 +30,12 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       //home: const HomeScreen(),
-      home: const HomePage(),
+      home: const SplashScreen(),
       routes: {
         Cts.homeScreen: (context) => const HomePage(),
         Cts.settingScreen: (context) => const  SettingScreen(),
-        Cts.gameScreen: (context) => const GamePage(),
-       
+        Cts.second: (context) =>  const Secondgame(),
+        Cts.third: (context) =>  const SplashScreen(),
 
       },
     );

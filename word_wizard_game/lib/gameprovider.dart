@@ -5,25 +5,60 @@ import 'package:word_wizard_game/words.dart/words_en.dart';
 class GameProvider extends ChangeNotifier {
   static int maxTiles = 5;
 
+// random index
+
+  final _randomIndex = Random();
+
   // Word to be guessed
-  static String _wordToBeGuessed = _generateWord();
+  static String _wordToBeGuessed = '';
 
-  // Generate a random word
-  static String _generateWord() {
-    int index = Random().nextInt(WordsEn.fiveLetters.length);
-    return WordsEn.fiveLetters[index];
-  }
-
+  // Getter for the word to be guessed
   String get wordToBeGuessed => _wordToBeGuessed;
 
-  set wordToBeGuessed(String value) {
-    _wordToBeGuessed = value;
+  // Setter for the word to be guessed
+  set wordToBeGuessed(String getRandomWord) {
+    _wordToBeGuessed = getRandomWord;
+    notifyListeners();
+  }
+
+  
+
+  // Generate a random word
+  String getRandomWord() {
+    final randomIndex = _randomIndex.nextInt(WordsEn.fiveLetters.length);
+    final selectedPair = WordsEn.fiveLetters[randomIndex];
+    return selectedPair[0]; // Return only the word
+  }
+
+  // get Hint for the user
+
+String getRandomHint(){
+  final randomIndex = _randomIndex.nextInt(WordsEn.fiveLetters.length);
+  final selectedPair = WordsEn.fiveLetters[randomIndex];
+  return selectedPair[1]; // Return only the hint
+}
+  // Hint for the user
+  String _hint = '';
+
+  // Getter for the hint
+  String get hint => _hint;
+
+  // Setter for the hint
+  set hint(String getRandomHint) {
+    _hint = getRandomHint;
     notifyListeners();
   }
 
   // Update the word to be guessed and notify listeners
   void updateWordToBeGuessed() {
-    _wordToBeGuessed = _generateWord();
+    _wordToBeGuessed = getRandomWord();
+    // Find the corresponding hint in the list based on the word
+    for (var pair in WordsEn.fiveLetters) {
+      if (pair[0] == _wordToBeGuessed) {
+        _hint = pair[1];
+        break;
+      }
+    }
     notifyListeners();
   }
 
@@ -57,6 +92,15 @@ class GameProvider extends ChangeNotifier {
       }
       return letters;
     }
+  }
+
+  List<String> splitword2(String word, int index) {
+    List<String> letters = [];
+
+    for (int i = 0; i < index; i++) {
+      letters.add(word[i]);
+    }
+    return letters;
   }
 
 // TILES HANDELING GESTURES AND STATES
@@ -122,55 +166,31 @@ class GameProvider extends ChangeNotifier {
   // icons tries function
 
   List<IconData> iconTries({required int tries, required int triesUsed}) {
-
     assert(tries >= 0);
     assert(triesUsed >= 0);
     // Improved function with clear variable names and concise logic
     final usedIcons = List.generate(triesUsed, (_) => Icons.abc);
-    final remainingIcons = List.generate(tries - triesUsed, (_) => Icons.abc_rounded);
+    final remainingIcons =
+        List.generate(tries - triesUsed, (_) => Icons.abc_rounded);
     final iconsRendered = [...usedIcons, ...remainingIcons];
     return iconsRendered;
-
   }
 
-static String _TextToOUput = '';
+  static String _TextToOUput = '';
 
-String get TextToOUput => _TextToOUput;
+  String get TextToOUput => _TextToOUput;
 
-void updateTextToOUput(String value) {
-  _TextToOUput = value;
-  notifyListeners();
- }
-
- static List<int> _hints = [];
-
- List<int> get hints => _hints;
-
- void updateHints(List<int> value) {
-  _hints = value ;
-  notifyListeners();
+  void updateTextToOUput(String value) {
+    _TextToOUput = value;
+    notifyListeners();
   }
 
-  static String checkingSimilarLetters (List<String> A, List<String> B)  {
+  static List<int> _hints = [];
 
-    String letter = '';
-    int index = 0;
+  List<int> get hints => _hints;
 
-    for (int i =0; i< A.length; i++) {
-      for (int j =0; j< B.length; j++) {
-        if (A[i] == B[j]) {
-          letter += (B[j]);
-          index = i;
-         
-        } 
-      }
-      
-    }
-
-    String result = '$letter is at index $index';
-     print('letter: $letter, index: $index');
-    return result;
-
+  void updateHints(List<int> value) {
+    _hints = value;
+    notifyListeners();
   }
-
 }
