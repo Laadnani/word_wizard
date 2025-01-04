@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
 //// THIS IS THE COMPONENT TO STYLE THE TILES ONLY

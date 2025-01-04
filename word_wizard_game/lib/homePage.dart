@@ -78,14 +78,14 @@ class _HomePageState extends State<HomePage> {
                 textStyle: const TextStyle(fontSize: 20),
                 shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(10))),
-                backgroundColor: Colors.green[700],
+                backgroundColor: const Color.fromARGB(255, 33, 82, 35),
               ),
               onPressed: () {
-                Null;
+                null;
               },
               child: Text(
-                '   Settings  \n comming soon ',
-                style: GoogleFonts.inknutAntiqua(
+                '  coming soon ',
+               style: GoogleFonts.inknutAntiqua(
                     fontSize: 16, color: Colors.white),
               ),
             ),

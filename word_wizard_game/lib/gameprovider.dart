@@ -21,8 +21,6 @@ class GameProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  
-
   // Generate a random word
   String getRandomWord() {
     final randomIndex = _randomIndex.nextInt(WordsEn.fiveLetters.length);
@@ -32,11 +30,12 @@ class GameProvider extends ChangeNotifier {
 
   // get Hint for the user
 
-String getRandomHint(){
-  final randomIndex = _randomIndex.nextInt(WordsEn.fiveLetters.length);
-  final selectedPair = WordsEn.fiveLetters[randomIndex];
-  return selectedPair[1]; // Return only the hint
-}
+  String getRandomHint() {
+    final randomIndex = _randomIndex.nextInt(WordsEn.fiveLetters.length);
+    final selectedPair = WordsEn.fiveLetters[randomIndex];
+    return selectedPair[1]; // Return only the hint
+  }
+
   // Hint for the user
   String _hint = '';
 
@@ -193,4 +192,39 @@ String getRandomHint(){
     _hints = value;
     notifyListeners();
   }
+
+  // Game Language
+  String _language = 'English';
+  String get language => _language;
+  set language(String value) {
+    _language = value;
+    notifyListeners(); // Notify listeners when language changes
+  }
+
+  final List<String> _languageVariants = ['English', 'French'];
+  List<String> get languageVariants => _languageVariants;
+
+  // Word Language
+  String _wordLanguage = 'English';
+  String get wordLanguage => _wordLanguage;
+  set wordLanguage(String value) {
+    _wordLanguage = value;
+    notifyListeners(); // Notify listeners when word language changes
+  }
+
+  final List<String> _wordLanguageVariants = ['English', 'French'];
+  List<String> get wordLanguageVariants => _wordLanguageVariants;
+
+  // Word Length
+  int _wordLength = 5;
+  int get wordLength => _wordLength;
+  set wordLength(int value) {
+    _wordLength = value;
+    notifyListeners(); // Notify listeners when word length changes
+  }
+
+  final List<int> _wordLengthVariants = [5, 6, 7, 8, 9, 10];
+  List<int> get wordLengthVariants => _wordLengthVariants;
 }
+
+

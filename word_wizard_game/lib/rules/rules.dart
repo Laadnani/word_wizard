@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 
 class Rules {
 // create a rule for the entred strings

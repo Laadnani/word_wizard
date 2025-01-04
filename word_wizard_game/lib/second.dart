@@ -10,8 +10,8 @@ class ScrabbleStack extends StatefulWidget {
   final FocusNode? focusNode;
   final TextEditingController controller;
 
-  ScrabbleStack({
-    Key? key, // Ensure the key is included
+   const ScrabbleStack({
+    super.key, // Ensure the key is included
     required this.numberOfTiles,
     this.tileColor = Colors.blue,
     this.autoFocus = false,
@@ -19,7 +19,7 @@ class ScrabbleStack extends StatefulWidget {
     this.initialText = '',
     this.focusNode,
     required this.controller,
-  }) : super(key: key);
+  });
 
   @override
   ScrabbleStackState createState() => ScrabbleStackState();
@@ -75,7 +75,7 @@ class ScrabbleStackState extends State<ScrabbleStack> {
     });
 
     // Debugging: Print the updated colors
-    print("Tile colors updated for line: ${tileColors.toString()}");
+   
   }
 
   List<Color> getColorsBackToNormal() {
